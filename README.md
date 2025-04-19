@@ -48,3 +48,11 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## For fetching movies from API
+- Create a account in Rapid API and search for IMDB API 
+- Create a .env file in the root folder
+- Paste this -> 
+```env
+EXPO_PUBLIC_IMDB_API_KEY  = Your API key
+```
