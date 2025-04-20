@@ -1,3 +1,19 @@
+interface MovieImdb {
+    id: number;
+    primaryTitle: string;
+    averageRating: number;
+    primaryImage: string;
+    releaseDate: string;
+    // type:string;
+    // originalTitle: string;
+    // language: string;
+    // isAdult: boolean;
+    // numVotes: number;
+    // genre_ids: number[];
+    // overview: string;
+    // popularity: number;
+    // video: boolean;
+}
 interface Movie {
   id: number;
   title: string;

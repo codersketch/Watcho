@@ -12,7 +12,7 @@ export const IMDB_CONFIG = {
 // fetchMovies.ts
 export const fetchMovies = async ({ query }: { query: string }) => {
     const endPoint = query
-        ? `${IMDB_CONFIG.BASE_URL}/imdb/search?${encodeURIComponent(query)}`
+        ? `${IMDB_CONFIG.BASE_URL}/imdb/autocomplete?query=${encodeURIComponent(query)}`
         : `${IMDB_CONFIG.BASE_URL}/imdb/most-popular-movies`;
 
     const response = await fetch(endPoint, {
