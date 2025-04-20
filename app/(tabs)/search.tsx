@@ -13,6 +13,7 @@ import useFetch from "@/services/usefetch";
 import { fetchMovies } from "@/services/api";
 import { icons } from "@/constants/icons";
 import SearchBar from "@/components/SearchBar";
+import { updateSearchCount } from "@/services/Appwrite";
 
 const Search = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -29,16 +30,22 @@ const Search = () => {
             }),
         false
     );
+    // Debounced search effect
     useEffect(() => {
-        const timeOutId = setTimeout(async () => {
+        const timeoutId = setTimeout(async () => {
             if (searchQuery.trim()) {
                 await loadMovies();
+
+                // Call updateSearchCount only if there are results
+                if (movies?.length! > 0 && movies?.[0]) {
+                    await updateSearchCount(searchQuery, movies[0]);
+                }
             } else {
                 reset();
             }
-        }, 500); 
-        
-        return ()=>clearTimeout(timeOutId);
+        }, 500);
+
+        return () => clearTimeout(timeoutId);
     }, [searchQuery]);
     // console.log(movies);
     return (
@@ -101,14 +108,16 @@ const Search = () => {
                                         {searchQuery}
                                     </Text>
                                 </Text>
-                        )}
+                            )}
                     </>
                 }
                 ListEmptyComponent={
                     !loading && !error ? (
                         <View className="mt-5 px-5">
                             <Text className="text-center text-gray-500">
-                                {searchQuery.trim() ? 'No movies found' : 'Search for a movie'}
+                                {searchQuery.trim()
+                                    ? "No movies found"
+                                    : "Search for a movie"}
                             </Text>
                         </View>
                     ) : null

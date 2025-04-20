@@ -15,7 +15,8 @@ interface MovieImdb {
     // video: boolean;
 }
 interface Movie {
-  id: number;
+  id: string;
+  primaryTitle: string;
   title: string;
   adult: boolean;
   backdrop_path: string;
@@ -25,6 +26,7 @@ interface Movie {
   overview: string;
   popularity: number;
   poster_path: string;
+  primaryImage: string;
   release_date: string;
   video: boolean;
   vote_average: number;
