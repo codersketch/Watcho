@@ -39,10 +39,10 @@ export const updateSearchCount = async (query: string, movie: Movie) => {
                 ID.unique(),
                 {
                     searchTerm: query,
+                    movie_id: movie.id,
+                    title: movie.primaryTitle,
                     count: 1,
                     poster_url: movie.primaryImage,
-                    title: movie.primaryTitle,
-                    movie_id: movie.id,
                 }
             );
         }
@@ -52,5 +52,17 @@ export const updateSearchCount = async (query: string, movie: Movie) => {
         throw error;
     }
 };
-
+export const getTrandingMovies = async (): Promise<TrendingMovie[] | undefined> => {
+    try {
+        const result = await database.listDocuments(
+            DATABASE_ID,
+            COLLECTIONS_ID,
+            [Query.limit(5), Query.orderDesc("count")]
+        );
+        return result.documents as unknown as TrendingMovie[];
+    } catch (error) {
+        console.log(error);
+        return undefined;
+    }
+};
 

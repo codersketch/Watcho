@@ -26,5 +26,5 @@ export const fetchMovies = async ({ query }: { query: string }) => {
 
     const data = await response.json();
     // console.log("Movies Data:", data);
-    return data;
+    return data.slice(0, 15);
 };
