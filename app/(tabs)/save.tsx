@@ -3,7 +3,7 @@ import React from 'react'
 
 const Save = () => {
   return (
-    <View>
+    <View className="bg-primary flex-1">
       <Text>Saved</Text>
     </View>
   )
